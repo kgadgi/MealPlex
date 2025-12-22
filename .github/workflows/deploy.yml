@@ -6,10 +6,15 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Checkout
@@ -34,11 +39,13 @@ jobs:
           find dist -name "*.html" -exec sed -i 's|src="/|src="./|g' {} +
           find dist -name "*.html" -exec sed -i 's|href="/|href="./|g' {} +
           find dist -name "*.html" -exec sed -i 's|url("/|url("./|g' {} +
-          # Also fix favicon
           find dist -name "*.html" -exec sed -i 's|="/favicon.ico|="./favicon.ico|g' {} +
 
-      - name: 📂 Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: 📤 Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: dist
+          path: ./dist
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
