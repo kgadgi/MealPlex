@@ -134,9 +134,17 @@ export default function AIChatScreen() {
                     {/* Input Area */}
                     <KeyboardAvoidingView
                         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
+                        keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}
                     >
-                        <View style={[styles.inputWrapper, { backgroundColor: theme.surface, borderTopColor: theme.border }]}>
+                        <View style={[
+                            styles.inputWrapper,
+                            {
+                                backgroundColor: theme.surface,
+                                borderTopColor: theme.border,
+                                // Add extra padding to clear the absolute tab bar (height 70 + bottom 25)
+                                paddingBottom: Platform.OS === 'web' ? 110 : (Platform.OS === 'ios' ? 110 : 95)
+                            }
+                        ]}>
                             <View style={[styles.inputBar, { backgroundColor: theme.background }]}>
                                 <TextInput
                                     style={[styles.input, { color: theme.text }]}

@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: 🚀 Export Web
-        run: npm run build:web
+        run: npx expo export --platform web --output-dir dist
 
       - name: 📂 Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

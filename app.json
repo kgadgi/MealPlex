@@ -28,7 +28,7 @@
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png",
-      "baseUrl": "/MealPlex"
+      "baseUrl": "/MealPlex/"
     },
     "plugins": [
       "expo-router"
