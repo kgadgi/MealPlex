@@ -25,7 +25,15 @@ jobs:
         run: npm install
 
       - name: 🚀 Export Web
+        env:
+          EXPO_PUBLIC_BASE_URL: /MealPlex
         run: npx expo export --platform web --output-dir dist
+
+      - name: 🛠️ Fix Asset Paths (Fallback)
+        run: |
+          find dist -name "*.html" -exec sed -i 's|src="/|src="/MealPlex/|g' {} +
+          find dist -name "*.html" -exec sed -i 's|href="/|href="/MealPlex/|g' {} +
+          find dist -name "*.html" -exec sed -i 's|url("/|url("/MealPlex/|g' {} +
 
       - name: 📂 Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
