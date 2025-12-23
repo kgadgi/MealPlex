@@ -24,14 +24,17 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
-    "favicon": "./assets/images/favicon.png"
-  },
-  "baseUrl": "/MealPlex",
-  "plugins": [
-    "expo-router"
-  ],
-  "experiments": {
-    "typedRoutes": true
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "baseUrl": "/MealPlex",
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
   }
-}
 }
